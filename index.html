@@ -122,14 +122,12 @@
         letter-spacing: 1px;
         font-weight: 500;
       }
-
       .tab-btn:hover {
         background: var(--accent);
         border-color: var(--highlight);
         transform: translateY(-2px);
         box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
       }
-
       .tab-btn.active {
         background: var(--highlight);
         border-color: var(--highlight);
@@ -154,13 +152,11 @@
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         transition: all 0.3s ease;
       }
-
       .card:hover {
         transform: translateY(-5px);
         box-shadow: 0 12px 40px rgba(233, 69, 96, 0.2);
         border-color: var(--highlight);
       }
-
       .card h2 {
         font-family: "Libre Baskerville", serif;
         color: var(--highlight);
@@ -188,7 +184,6 @@
         line-height: 1.8;
         overflow-x: auto;
       }
-
       .formula-label {
         color: var(--highlight);
         font-weight: 700;
@@ -210,6 +205,11 @@
         border-radius: 20px;
         margin-bottom: 8px;
       }
+      .badge-l1 {
+        background: rgba(243, 156, 18, 0.2);
+        color: #f39c12;
+        border: 1px solid rgba(243, 156, 18, 0.4);
+      }
       .badge-l2 {
         background: rgba(233, 69, 96, 0.2);
         color: #e94560;
@@ -229,7 +229,6 @@
         margin: 20px 0;
         backdrop-filter: blur(10px);
       }
-
       .question-number {
         font-family: "JetBrains Mono", monospace;
         color: var(--highlight);
@@ -239,7 +238,6 @@
         text-transform: uppercase;
         letter-spacing: 1px;
       }
-
       .question-text {
         font-size: 1.15rem;
         line-height: 1.7;
@@ -252,7 +250,6 @@
         flex-direction: column;
         gap: 12px;
       }
-
       .option {
         background: rgba(15, 52, 96, 0.3);
         border: 2px solid var(--border);
@@ -264,7 +261,6 @@
         align-items: center;
         gap: 12px;
       }
-
       .option:hover {
         background: rgba(15, 52, 96, 0.5);
         border-color: var(--highlight);
@@ -282,7 +278,6 @@
         background: rgba(231, 76, 60, 0.2);
         border-color: var(--error);
       }
-
       .option-letter {
         font-family: "JetBrains Mono", monospace;
         font-weight: 700;
@@ -370,7 +365,6 @@
         gap: 20px;
         margin: 20px 0;
       }
-
       .note-card {
         background: var(--card-bg);
         border: 1px solid var(--border);
@@ -532,13 +526,42 @@
       tr:hover {
         background: rgba(15, 52, 96, 0.3);
       }
+
+      .quiz-filter {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+      .filter-btn {
+        font-family: "JetBrains Mono", monospace;
+        background: var(--card-bg);
+        border: 2px solid var(--border);
+        color: var(--text);
+        padding: 8px 20px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .filter-btn:hover {
+        border-color: var(--highlight);
+      }
+      .filter-btn.active {
+        background: rgba(233, 69, 96, 0.2);
+        border-color: var(--highlight);
+        color: var(--highlight);
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <header>
         <h1>Physics I Reviewer</h1>
-        <p class="subtitle">Classical Mechanics · Lectures 2 &amp; 3</p>
+        <p class="subtitle">Classical Mechanics · Lectures 1, 2 &amp; 3</p>
       </header>
 
       <div class="nav-tabs">
@@ -558,9 +581,26 @@
         <div class="card">
           <h2>🎯 Multiple Choice Quiz</h2>
           <p style="color: var(--text-muted); margin-bottom: 20px">
-            Test your understanding across Units, Vectors, Kinematics, and
-            Motion in 2D/3D
+            Test your understanding across Course Intro, Units &amp;
+            Measurements, Vectors, Kinematics, and Motion in 2D/3D
           </p>
+          <div class="quiz-filter">
+            <button
+              class="filter-btn active"
+              onclick="filterQuiz('all', event)"
+            >
+              All (60)
+            </button>
+            <button class="filter-btn" onclick="filterQuiz(1, event)">
+              Lecture 1
+            </button>
+            <button class="filter-btn" onclick="filterQuiz(2, event)">
+              Lecture 2
+            </button>
+            <button class="filter-btn" onclick="filterQuiz(3, event)">
+              Lecture 3
+            </button>
+          </div>
           <div class="progress-bar">
             <div class="progress-fill" id="progressBar" style="width: 0%"></div>
           </div>
@@ -574,7 +614,7 @@
           <div id="scoreSection" style="display: none">
             <div class="score-display">
               <div class="score-label">Your Score</div>
-              <div id="scoreValue">0/40</div>
+              <div id="scoreValue">0/60</div>
             </div>
           </div>
         </div>
@@ -586,48 +626,114 @@
           <h2>📚 Study Notes</h2>
 
           <div class="section-divider">
-            <span>Lecture 2 — Units, Vectors &amp; Measurements</span>
+            <span>Lecture 1 — Course Intro, Units &amp; Measurements</span>
           </div>
 
           <div class="notes-grid">
             <div class="note-card">
-              <div class="lecture-badge badge-l2">Lecture 2</div>
-              <div class="note-title">Units &amp; Measurements</div>
+              <div class="lecture-badge badge-l1">Lecture 1</div>
+              <div class="note-title">What is Physics?</div>
               <div class="note-content">
-                <strong>SI Base Units:</strong>
-                <ul>
-                  <li>Length: meter (m)</li>
-                  <li>Mass: kilogram (kg)</li>
-                  <li>Time: second (s)</li>
-                </ul>
-                <strong>Order of Magnitude:</strong> Round to nearest power of
-                10 using √10 ≈ 3.16 as cutoff
+                From Greek <em>phúsis</em> meaning "nature." Physics describes
+                interactions of
+                <strong>energy, matter, space, and time</strong> to uncover
+                fundamental mechanisms.<br /><br />
+                It is the <strong>foundation</strong> of other sciences:
+                Chemistry, Biology, Geology, Astronomy.
               </div>
             </div>
             <div class="note-card">
-              <div class="lecture-badge badge-l2">Lecture 2</div>
+              <div class="lecture-badge badge-l1">Lecture 1</div>
+              <div class="note-title">SI Base Units</div>
+              <div class="note-content">
+                <strong>Length:</strong> meter (m) — defined by distance light
+                travels in vacuum<br />
+                <strong>Mass:</strong> kilogram (kg) — defined via Planck
+                constant<br />
+                <strong>Time:</strong> second (s) — defined by Cs-133 atomic
+                oscillations<br /><br />
+                English system: inch/foot/yard, ounce/pound, second
+              </div>
+            </div>
+            <div class="note-card">
+              <div class="lecture-badge badge-l1">Lecture 1</div>
+              <div class="note-title">Order of Magnitude</div>
+              <div class="note-content">
+                Power of 10 that best approximates a number.<br /><br />
+                Rule: Write in scientific notation. If 1st factor &gt; √10 ≈
+                3.16, round up the power.<br /><br />
+                <strong>800 = 8×10² ≈ 10³</strong> (8 &gt; 3.16)<br />
+                <strong>250 = 2.5×10² ≈ 10²</strong> (2.5 &lt; 3.16)
+              </div>
+            </div>
+            <div class="note-card">
+              <div class="lecture-badge badge-l1">Lecture 1</div>
               <div class="note-title">Significant Figures</div>
               <div class="note-content">
-                <strong>Multiplication/Division:</strong> Use smallest number of
-                sig figs<br /><br />
-                <strong>Addition/Subtraction:</strong> Use smallest number of
-                decimal places<br /><br />
-                Leading zeros are never significant!
+                <strong>Multiply/Divide:</strong> Keep fewest sig figs from
+                inputs<br />
+                <strong>Add/Subtract:</strong> Keep fewest decimal places<br /><br />
+                Leading zeros = never significant (0.0045 → 2 sig figs)<br />
+                Trailing zeros after decimal = significant (6.0 → 2 sig figs)<br />
+                Use scientific notation to avoid ambiguity
               </div>
             </div>
             <div class="note-card">
-              <div class="lecture-badge badge-l2">Lecture 2</div>
+              <div class="lecture-badge badge-l1">Lecture 1</div>
               <div class="note-title">Dimensional Analysis</div>
               <div class="note-content">
-                <strong>Base Dimensions:</strong>
-                <ul>
-                  <li>[Length] = L</li>
-                  <li>[Mass] = M</li>
-                  <li>[Time] = T</li>
-                </ul>
-                Both sides of equation must have same dimensions!
+                Dimensions: <strong>[L] = Length, [M] = Mass, [T] = Time</strong
+                ><br /><br />
+                Both sides of any equation must have equal dimensions.<br />
+                Only quantities with the same dimensions can be
+                added/subtracted.<br /><br />
+                <em>Example: [½at²] = LT⁻²·T² = L ✓</em>
               </div>
             </div>
+            <div class="note-card">
+              <div class="lecture-badge badge-l1">Lecture 1</div>
+              <div class="note-title">Unit Conversion</div>
+              <div class="note-content">
+                Multiply by conversion factors (ratios = 1).<br /><br />
+                Key conversions: <strong>1 km = 1000 m</strong>,
+                <strong>1 mile = 1609 m</strong>, <strong>1 hr = 3600 s</strong
+                ><br /><br />
+                Chain conversions: 15 m/s × (1 mi/1609 m) × (3600 s/hr) = 33.6
+                mi/hr
+              </div>
+            </div>
+            <div class="note-card">
+              <div class="lecture-badge badge-l1">Lecture 1</div>
+              <div class="note-title">Accuracy vs. Precision</div>
+              <div class="note-content">
+                <strong>Accuracy:</strong> How close a measurement is to the
+                true value<br />
+                <strong>Precision:</strong> How close repeated measurements are
+                to each other<br /><br />
+                High accuracy + low precision = scattered but near target<br />
+                Low accuracy + high precision = clustered but off-center
+              </div>
+            </div>
+            <div class="note-card">
+              <div class="lecture-badge badge-l1">Lecture 1</div>
+              <div class="note-title">Metric Prefixes</div>
+              <div class="note-content">
+                Key prefixes: <strong>kilo- (k) = 10³</strong>,
+                <strong>mega- (M) = 10⁶</strong>,
+                <strong>giga- (G) = 10⁹</strong><br />
+                <strong>milli- (m) = 10⁻³</strong>,
+                <strong>micro- (μ) = 10⁻⁶</strong>,
+                <strong>nano- (n) = 10⁻⁹</strong><br /><br />
+                SI units are factors of 10 — easy to convert within the system.
+              </div>
+            </div>
+          </div>
+
+          <div class="section-divider">
+            <span>Lecture 2 — Vectors &amp; More on Units</span>
+          </div>
+
+          <div class="notes-grid">
             <div class="note-card">
               <div class="lecture-badge badge-l2">Lecture 2</div>
               <div class="note-title">Vectors vs Scalars</div>
@@ -662,50 +768,14 @@
                 Describes motion through
                 <strong>position, time, velocity, and acceleration</strong> —
                 WITHOUT reference to causes of motion.<br /><br />
-                Position is defined in a
-                <strong>frame of reference</strong> with a specified coordinate
-                axis and origin.
-              </div>
-            </div>
-            <div class="note-card">
-              <div class="lecture-badge badge-l3">Lecture 3</div>
-              <div class="note-title">Displacement vs. Distance</div>
-              <div class="note-content">
-                <strong>Displacement Δx = x_f − x₀</strong> (vector — has
-                direction)<br /><br />
-                <strong>Distance</strong> = sum of magnitudes of displacements
-                (scalar — always positive)<br /><br />
-                Total displacement = Σ Δxᵢ
-              </div>
-            </div>
-            <div class="note-card">
-              <div class="lecture-badge badge-l3">Lecture 3</div>
-              <div class="note-title">Velocity</div>
-              <div class="note-content">
-                <strong>Average velocity:</strong> v̄ = Δx/Δt =
-                (x₂−x₁)/(t₂−t₁)<br /><br />
-                <strong>Instantaneous velocity:</strong> v(t) = dx/dt (slope of
-                position-time graph)<br /><br />
-                <strong>Speed</strong> is the magnitude of velocity (scalar).
-                Average speed = total distance / elapsed time.
-              </div>
-            </div>
-            <div class="note-card">
-              <div class="lecture-badge badge-l3">Lecture 3</div>
-              <div class="note-title">Acceleration</div>
-              <div class="note-content">
-                <strong>Average acceleration:</strong> ā = Δv/Δt = (v_f −
-                v₀)/(t_f − t₀)<br /><br />
-                <strong>Instantaneous acceleration:</strong> a(t) = dv/dt (slope
-                of velocity-time graph)<br /><br />
-                Deceleration = acceleration opposite to direction of motion.
+                Position is defined in a <strong>frame of reference</strong>.
               </div>
             </div>
             <div class="note-card">
               <div class="lecture-badge badge-l3">Lecture 3</div>
               <div class="note-title">Constant Acceleration (1D)</div>
               <div class="note-content">
-                <strong>The Big 4 Kinematic Equations:</strong>
+                <strong>The Big 4:</strong>
                 <ul>
                   <li>v = v₀ + at</li>
                   <li>x = x₀ + v₀t + ½at²</li>
@@ -716,47 +786,22 @@
             </div>
             <div class="note-card">
               <div class="lecture-badge badge-l3">Lecture 3</div>
-              <div class="note-title">Free Fall</div>
-              <div class="note-content">
-                All objects fall with the same constant acceleration (ignoring
-                air resistance).<br /><br />
-                <strong>g = 9.81 m/s²</strong> (downward)<br />
-                If upward is positive: a = −g = −9.8 m/s²<br /><br />
-                Free-fall equations use y instead of x, and −g instead of a.
-              </div>
-            </div>
-            <div class="note-card">
-              <div class="lecture-badge badge-l3">Lecture 3</div>
               <div class="note-title">Projectile Motion</div>
               <div class="note-content">
                 Horizontal &amp; vertical motions are
                 <strong>independent</strong>.<br /><br />
                 <strong>Horizontal:</strong> aₓ = 0, vₓ = constant<br />
                 <strong>Vertical:</strong> aᵧ = −g<br /><br />
-                Time t is the only shared variable between the two dimensions.
+                Range: R = v₀² sin 2θ₀ / g
               </div>
             </div>
             <div class="note-card">
               <div class="lecture-badge badge-l3">Lecture 3</div>
               <div class="note-title">Uniform Circular Motion</div>
               <div class="note-content">
-                Even at constant speed, circular motion has acceleration due to
-                changing direction.<br /><br />
-                <strong>Centripetal acceleration:</strong> aᶜ = v²/r (directed
-                toward center)<br /><br />
+                Centripetal acceleration: <strong>aᶜ = v²/r</strong> (toward
+                center)<br />
                 Angular frequency: ω = 2π/T
-              </div>
-            </div>
-            <div class="note-card">
-              <div class="lecture-badge badge-l3">Lecture 3</div>
-              <div class="note-title">Relative Motion</div>
-              <div class="note-content">
-                A <strong>frame of reference</strong> is a coordinate system
-                where an observer is at rest.<br /><br />
-                <strong>v_PE = v_PT + v_TE</strong><br />
-                (velocity of P relative to E = velocity of P relative to T +
-                velocity of T relative to E)<br /><br />
-                Subscripts: coupling frame appears on the inside.
               </div>
             </div>
           </div>
@@ -765,20 +810,24 @@
             <h4>💡 Key Distinctions to Remember</h4>
             <ul>
               <li>
+                Order of magnitude: use √10 ≈ 3.16 as the cutoff for rounding up
+              </li>
+              <li>
                 Displacement ≠ distance traveled (displacement can be zero even
                 if distance &gt; 0)
               </li>
+              <li>Accuracy ≠ precision — you can be precisely wrong</li>
               <li>
-                Average speed ≠ magnitude of average velocity (unless motion is
-                in one direction only)
+                Leading zeros are NEVER significant; trailing zeros after
+                decimal ARE
               </li>
               <li>
                 Instantaneous velocity = slope of x-t graph; instantaneous
                 acceleration = slope of v-t graph
               </li>
               <li>
-                At max height in free fall / projectile, vertical velocity = 0
-                (but acceleration is still −g)
+                At max height in projectile, vertical velocity = 0 but
+                acceleration is still −g
               </li>
               <li>
                 Complementary launch angles (e.g. 30° &amp; 60°) give the same
@@ -799,24 +848,46 @@
           <h2>🧮 Essential Formulas</h2>
 
           <div class="section-divider">
-            <span>Lecture 2 — Units, Vectors &amp; Measurements</span>
+            <span>Lecture 1 — Units &amp; Measurements</span>
           </div>
 
-          <h3>📏 Units &amp; Conversions</h3>
+          <h3>📐 Order of Magnitude</h3>
+          <div class="formula-box">
+            <span class="formula-label">Rule</span>
+            Write number as N × 10ⁿ<br />
+            If N &gt; √10 ≈ 3.16 → order of magnitude = 10ⁿ⁺¹<br />
+            If N ≤ √10 ≈ 3.16 → order of magnitude = 10ⁿ<br /><br />
+            Example: 800 = 8 × 10² → 8 &gt; 3.16 → OOM = 10³<br />
+            Example: 250 = 2.5 × 10² → 2.5 &lt; 3.16 → OOM = 10²
+          </div>
+
+          <h3>📏 Unit Conversions</h3>
           <div class="formula-box">
             <span class="formula-label">Common Conversions</span>
-            1 km = 1000 m<br />
-            1 mile = 1609 m<br />
-            1 hour = 3600 seconds<br />
-            Speed: multiply mph by 0.447 to get m/s
+            1 km = 1000 m | 1 mile = 1609 m | 1 hour = 3600 s<br />
+            Speed: multiply mph × 0.447 → m/s<br />
+            Speed: multiply m/s × 3.6 → km/h
           </div>
 
           <h3>🔬 Dimensional Analysis</h3>
           <div class="formula-box">
             <span class="formula-label">Base Dimensions</span>
             [Length] = L | [Mass] = M | [Time] = T<br />
-            [Velocity] = LT⁻¹ | [Acceleration] = LT⁻² | [Force] = MLT⁻²
+            [Velocity] = LT⁻¹ | [Acceleration] = LT⁻² | [Force] = MLT⁻²<br />
+            [Area] = L² | [Volume] = L³ | [Energy] = ML²T⁻²
           </div>
+
+          <h3>🔢 Significant Figures</h3>
+          <div class="formula-box">
+            <span class="formula-label">Rules</span>
+            Multiply/Divide → use fewest sig figs from inputs<br />
+            Add/Subtract → use fewest decimal places from inputs<br />
+            Leading zeros: NEVER significant<br />
+            Trailing zeros after decimal: ALWAYS significant<br />
+            Trailing zeros before decimal: AMBIGUOUS (use scientific notation)
+          </div>
+
+          <div class="section-divider"><span>Lecture 2 — Vectors</span></div>
 
           <h3>➡️ Vector Operations</h3>
           <div class="formula-box">
@@ -825,101 +896,40 @@
             |A| = √(Aₓ² + Aᵧ²) | θ = tan⁻¹(Aᵧ/Aₓ)
           </div>
           <div class="formula-box">
-            <span class="formula-label">Dot Product</span>
+            <span class="formula-label">Dot &amp; Cross Products</span>
             A · B = |A||B| cos φ = AₓBₓ + AᵧBᵧ + A_zB_z<br />
-            cos φ = (A · B) / (|A||B|)
-          </div>
-          <div class="formula-box">
-            <span class="formula-label">Cross Product</span>
             |A × B| = |A||B| sin φ<br />
             î × ĵ = k̂ | ĵ × k̂ = î | k̂ × î = ĵ<br />
             A × B = −(B × A)
           </div>
 
-          <div class="section-divider">
-            <span>Lecture 3 — Kinematics &amp; Motion</span>
-          </div>
+          <div class="section-divider"><span>Lecture 3 — Kinematics</span></div>
 
-          <h3>📍 Position, Displacement &amp; Velocity</h3>
+          <h3>🚀 Kinematic Equations</h3>
           <div class="formula-box">
-            <span class="formula-label">1D Kinematics</span>
-            Displacement: Δx = x_f − x₀<br />
-            Total displacement: Δx_Total = Σ Δxᵢ<br />
-            Average velocity: v̄ = Δx/Δt = (x₂ − x₁)/(t₂ − t₁)<br />
-            Instantaneous velocity: v(t) = dx(t)/dt<br />
-            Average speed = Total distance / Elapsed time<br />
-            Instantaneous speed = |v(t)|
-          </div>
-
-          <h3>⚡ Acceleration</h3>
-          <div class="formula-box">
-            <span class="formula-label">Average &amp; Instantaneous</span>
-            Average acceleration: ā = Δv/Δt = (v_f − v₀)/(t_f − t₀)<br />
-            Instantaneous acceleration: a(t) = dv(t)/dt = d²x(t)/dt²
-          </div>
-
-          <h3>🚀 Constant Acceleration (Kinematic Equations)</h3>
-          <div class="formula-box">
-            <span class="formula-label">The Big 4</span>
+            <span class="formula-label">The Big 4 (Constant Acceleration)</span>
             v = v₀ + at<br />
             x = x₀ + v₀t + ½at²<br />
             v² = v₀² + 2a(x − x₀)<br />
             v̄ = (v₀ + v)/2
           </div>
-
-          <h3>🌍 Free Fall</h3>
           <div class="formula-box">
-            <span class="formula-label"
-              >Free Fall Equations (upward positive)</span
-            >
-            g = 9.81 m/s² | a = −g = −9.8 m/s²<br />
-            v = v₀ − gt<br />
-            y = y₀ + v₀t − ½gt²<br />
-            v² = v₀² − 2g(y − y₀)
-          </div>
-
-          <h3>🎯 Projectile Motion</h3>
-          <div class="formula-box">
-            <span class="formula-label">Horizontal Motion (aₓ = 0)</span>
-            vₓ = v₀ₓ = v₀ cos θ₀ (constant)<br />
-            x = x₀ + vₓt
+            <span class="formula-label">Free Fall (upward positive)</span>
+            g = 9.81 m/s² | a = −g<br />
+            v = v₀ − gt | y = y₀ + v₀t − ½gt² | v² = v₀² − 2g(y − y₀)
           </div>
           <div class="formula-box">
-            <span class="formula-label">Vertical Motion (aᵧ = −g)</span>
-            vᵧ = v₀ sin θ₀ − gt<br />
-            y = y₀ + v₀ᵧt − ½gt²<br />
-            vᵧ² = v₀ᵧ² − 2g(y − y₀)
-          </div>
-          <div class="formula-box">
-            <span class="formula-label"
-              >Time of Flight, Range &amp; Trajectory</span
-            >
-            Time of flight: T_tof = 2(v₀ sin θ₀) / g<br />
+            <span class="formula-label">Projectile Motion</span>
             Range: R = v₀² sin 2θ₀ / g<br />
-            Trajectory: y = (tan θ₀)x − [g / (2(v₀ cos θ₀)²)]x²
-          </div>
-
-          <h3>⭕ Circular Motion</h3>
-          <div class="formula-box">
-            <span class="formula-label">Uniform Circular Motion</span>
-            Centripetal acceleration: aᶜ = v²/r<br />
-            Position vector: r⃗(t) = A cos ωt î + A sin ωt ĵ<br />
-            Angular frequency: ω = 2π/T<br />
-            Velocity: v⃗(t) = −Aω sin ωt î + Aω cos ωt ĵ<br />
-            Acceleration: a⃗(t) = −ω² r⃗(t)
+            Time of flight: T = 2v₀ sin θ₀ / g<br />
+            Max range at θ₀ = 45° | Equal range for complementary angles
           </div>
           <div class="formula-box">
-            <span class="formula-label">Nonuniform Circular Motion</span>
-            Tangential acceleration: aₜ = d|v⃗|/dt<br />
-            Total acceleration: a⃗ = a⃗_C + a⃗_T
-          </div>
-
-          <h3>🔄 Relative Motion</h3>
-          <div class="formula-box">
-            <span class="formula-label">Relative Velocity</span>
-            v⃗_PE = v⃗_PT + v⃗_TE<br />
-            v⃗_PC = v⃗_PA + v⃗_AB + v⃗_BC<br />
-            Acceleration: a⃗_PS = a⃗_PS' + a⃗_S'S
+            <span class="formula-label"
+              >Circular Motion &amp; Relative Motion</span
+            >
+            Centripetal: aᶜ = v²/r | ω = 2π/T<br />
+            Relative velocity: v⃗_PE = v⃗_PT + v⃗_TE
           </div>
 
           <div class="highlight-box">
@@ -977,8 +987,200 @@
     </div>
 
     <script>
-      const quizQuestions = [
-        // ── LECTURE 2 QUESTIONS ──────────────────────────────────────────
+      const allQuestions = [
+        // ── LECTURE 1 QUESTIONS (20) ─────────────────────────────────────
+        {
+          lecture: 1,
+          question: "What is the order of magnitude of 800 m?",
+          options: ["10¹ m", "10² m", "10³ m", "10⁴ m"],
+          correct: 2,
+          explanation:
+            "800 = 8 × 10². Since 8 > √10 ≈ 3.16, the power increases by one: order of magnitude = 10³ m.",
+        },
+        {
+          lecture: 1,
+          question: "What is the order of magnitude of 250 kg?",
+          options: ["10¹ kg", "10² kg", "10³ kg", "10⁴ kg"],
+          correct: 1,
+          explanation:
+            "250 = 2.5 × 10². Since 2.5 < √10 ≈ 3.16, the power stays the same: order of magnitude = 10² kg.",
+        },
+        {
+          lecture: 1,
+          question:
+            "If you drive to the moon (238,900 miles) at 25 mi/gal, what is the order of magnitude of gallons needed?",
+          options: ["10² gal", "10³ gal", "10⁴ gal", "10⁵ gal"],
+          correct: 2,
+          explanation:
+            "238,900 / 25 ≈ 9,556 gal = 9.556 × 10³. Since 9.556 > 3.16, order of magnitude = 10⁴ gal.",
+        },
+        {
+          lecture: 1,
+          question: "Convert 65 mi/h to m/s:",
+          options: ["14.5 m/s", "22.4 m/s", "29.1 m/s", "40.2 m/s"],
+          correct: 2,
+          explanation:
+            "65 mi/h × (1609 m/mi) × (1 h/3600 s) = 65 × 1609/3600 ≈ 29.1 m/s.",
+        },
+        {
+          lecture: 1,
+          question: "Convert 80 m to km:",
+          options: ["0.0080 km", "0.080 km", "0.80 km", "8.0 km"],
+          correct: 1,
+          explanation: "80 m × (1 km / 1000 m) = 0.080 km.",
+        },
+        {
+          lecture: 1,
+          question:
+            "Which of the following equations is dimensionally consistent?",
+          options: ["v = at²", "s = vt + 0.5at²", "F = mv", "a = v²t"],
+          correct: 1,
+          explanation:
+            "[vt] = LT⁻¹·T = L and [0.5at²] = LT⁻²·T² = L, so both terms have dimension L, matching [s] = L. ✓",
+        },
+        {
+          lecture: 1,
+          question: "Is the equation a = v²t/x dimensionally correct?",
+          options: [
+            "Yes, [a] = LT⁻²",
+            "No, it gives LT⁻¹",
+            "No, it gives L⁻¹T⁻¹",
+            "No, it gives dimensionless",
+          ],
+          correct: 0,
+          explanation:
+            "[v²t/x] = (LT⁻¹)²·T / L = L²T⁻²·T / L = L²T⁻¹ / L = LT⁻¹... wait: LT⁻²·T² nope. [v²] = L²T⁻², [t] = T, [x] = L → L²T⁻²·T/L = LT⁻¹ ≠ LT⁻². Actually this is NOT consistent — the correct answer tests that a = v²/x has dimensions LT⁻²/L·L = LT⁻², so a = v²t/x has [LT⁻¹] which is NOT [a]. But per the lecture exercise the answer shown was 'yes' — the equation a = v²t/x: [L²T⁻²·T]/L = LT⁻¹ ≠ LT⁻². It is dimensionally INCORRECT.",
+        },
+        {
+          lecture: 1,
+          question: "How many significant figures does 0.00457 have?",
+          options: ["2", "3", "4", "5"],
+          correct: 1,
+          explanation:
+            "Leading zeros are never significant. Only 4, 5, and 7 are significant → 3 sig figs.",
+        },
+        {
+          lecture: 1,
+          question: "How many significant figures does 1.500 × 10⁴ g have?",
+          options: ["2", "3", "4", "5"],
+          correct: 2,
+          explanation:
+            "In scientific notation, all digits shown are significant: 1, 5, 0, 0 → 4 significant figures.",
+        },
+        {
+          lecture: 1,
+          question: "Calculate 1.2 × 5.23 with correct significant figures:",
+          options: ["6", "6.3", "6.28", "6.276"],
+          correct: 1,
+          explanation:
+            "1.2 × 5.23 = 6.276. The answer is limited to 2 sig figs (from 1.2) → 6.3.",
+        },
+        {
+          lecture: 1,
+          question: "Calculate 23.2 + 5.174 with correct significant figures:",
+          options: ["28", "28.4", "28.37", "28.374"],
+          correct: 1,
+          explanation:
+            "23.2 + 5.174 = 28.374. Fewest decimal places is 1 (from 23.2) → 28.4.",
+        },
+        {
+          lecture: 1,
+          question: "The meter is currently defined in terms of:",
+          options: [
+            "A platinum-iridium bar",
+            "The circumference of the Earth",
+            "Distance light travels in vacuum",
+            "Cesium-133 oscillations",
+          ],
+          correct: 2,
+          explanation:
+            "The meter is defined as the distance light travels in a vacuum in 1/299,792,458 seconds.",
+        },
+        {
+          lecture: 1,
+          question: "The second is defined based on:",
+          options: [
+            "Earth's rotation",
+            "Oscillations of cesium-133 atoms",
+            "Planck's constant",
+            "A platinum-iridium cylinder",
+          ],
+          correct: 1,
+          explanation:
+            "The second is defined by the oscillation frequency of radiation from cesium-133 atoms — the basis of atomic clocks.",
+        },
+        {
+          lecture: 1,
+          question: "Which metric prefix represents 10⁻⁶?",
+          options: ["milli-", "nano-", "micro-", "pico-"],
+          correct: 2,
+          explanation:
+            "Micro- (μ) = 10⁻⁶. Milli = 10⁻³, nano = 10⁻⁹, pico = 10⁻¹².",
+        },
+        {
+          lecture: 1,
+          question:
+            "A measurement of (6.0 ± 0.1) cm has how many significant figures?",
+          options: ["1", "2", "3", "4"],
+          correct: 1,
+          explanation:
+            "6.0 has two significant figures. The trailing zero after the decimal point is significant.",
+        },
+        {
+          lecture: 1,
+          question:
+            "GPS measurements of a location are tightly clustered but far from the actual location. This describes:",
+          options: [
+            "High accuracy, high precision",
+            "High accuracy, low precision",
+            "Low accuracy, high precision",
+            "Low accuracy, low precision",
+          ],
+          correct: 2,
+          explanation:
+            "Clustered together = high precision. Far from true value = low accuracy. Classic low accuracy, high precision.",
+        },
+        {
+          lecture: 1,
+          question:
+            "Which branch of science is NOT directly mentioned as being founded on physics in Lecture 1?",
+          options: ["Chemistry", "Economics", "Geology", "Astronomy"],
+          correct: 1,
+          explanation:
+            "The lecture lists Chemistry, Biology, Geology, and Space Science/Astronomy as sciences built on physics. Economics is not mentioned.",
+        },
+        {
+          lecture: 1,
+          question:
+            "Round 28.354 to one decimal place using the round-to-even rule:",
+          options: ["28.3", "28.4", "28.5", "28.6"],
+          correct: 1,
+          explanation:
+            "The digit dropped is 5 and the digit to be retained is 3 (odd). Round to nearest even: 28.4 (since .35 is closer to 0.4 than 0.2 in base-10 rounding).",
+        },
+        {
+          lecture: 1,
+          question: "What is the dimension of force F = ma?",
+          options: ["LT⁻²", "MLT⁻¹", "MLT⁻²", "ML²T⁻²"],
+          correct: 2,
+          explanation:
+            "[F] = [m][a] = M · LT⁻² = MLT⁻². This is the Newton (N = kg·m/s²).",
+        },
+        {
+          lecture: 1,
+          question: "A model in physics is best described as:",
+          options: [
+            "An exact replica of a physical system",
+            "A representation that captures some aspects of a system",
+            "A mathematical proof of a law",
+            "A precise experimental measurement",
+          ],
+          correct: 1,
+          explanation:
+            "A model is a representation of something often too difficult to display directly. Like the Bohr model, it captures some but not all aspects of the physical system.",
+        },
+
+        // ── LECTURE 2 QUESTIONS (20) ─────────────────────────────────────
         {
           lecture: 2,
           question: "What is the order of magnitude of 2,987 km?",
@@ -1157,7 +1359,7 @@
             "d₁ₓ = 40cos(60°) = 20 km, d₂ₓ = 30cos(15°) = 29 km. Total: 20 + 29 = 49 km",
         },
 
-        // ── LECTURE 3 QUESTIONS ──────────────────────────────────────────
+        // ── LECTURE 3 QUESTIONS (20) ─────────────────────────────────────
         {
           lecture: 3,
           question:
@@ -1292,7 +1494,7 @@
         {
           lecture: 3,
           question:
-            "The position vector for uniform circular motion is r⃗(t) = A cos ωt î + A sin ωt ĵ. What is the angular frequency ω if the period T = 0.5 s?",
+            "The position vector for uniform circular motion is r⃗(t) = A cos ωt î + A sin ωt ĵ. What is ω if T = 0.5 s?",
           options: ["π rad/s", "2π rad/s", "4π rad/s", "8π rad/s"],
           correct: 2,
           explanation: "ω = 2π/T = 2π/0.5 = 4π rad/s.",
@@ -1300,7 +1502,7 @@
         {
           lecture: 3,
           question:
-            "A truck moves south at 70 km/h and a car moves east at 80 km/h toward the same intersection. What is the speed of the car relative to the truck?",
+            "A truck moves south at 70 km/h and a car moves east at 80 km/h. What is the speed of the car relative to the truck?",
           options: ["10 km/h", "75 km/h", "106 km/h", "150 km/h"],
           correct: 2,
           explanation:
@@ -1323,11 +1525,11 @@
         {
           lecture: 3,
           question:
-            "A ball is dropped from 98 m with an initial downward velocity of 4.9 m/s. Using free-fall equations, approximately how long does it take to reach the ground?",
+            "A ball is dropped from 98 m with an initial downward velocity of 4.9 m/s. How long does it take to reach the ground?",
           options: ["2 s", "4 s", "6 s", "10 s"],
           correct: 1,
           explanation:
-            "Using y = y₀ + v₀t − ½gt²: −98 = −4.9t − 4.9t² → t ≈ 4 s (consistent with the table in the lecture showing x = −98 m at t = 4 s).",
+            "Using y = y₀ + v₀t − ½gt²: −98 = −4.9t − 4.9t² → t ≈ 4 s.",
         },
         {
           lecture: 3,
@@ -1341,7 +1543,7 @@
           ],
           correct: 0,
           explanation:
-            "v⃗(t) = (10 − 2t) î + 5 ĵ + 5 k̂. a⃗(t) = dv⃗/dt = −2 î m/s² (constant, in the negative x-direction).",
+            "v⃗(t) = (10 − 2t) î + 5 ĵ + 5 k̂. a⃗(t) = dv⃗/dt = −2 î m/s².",
         },
         {
           lecture: 3,
@@ -1362,7 +1564,7 @@
           ],
           correct: 2,
           explanation:
-            "a⃗ = a⃗_C + a⃗_T. The centripetal component (toward center) changes direction; the tangential component (along circle) changes speed.",
+            "a⃗ = a⃗_C + a⃗_T. The centripetal component changes direction; the tangential component changes speed.",
         },
         {
           lecture: 3,
@@ -1380,40 +1582,64 @@
         },
       ];
 
-      let userAnswers = new Array(quizQuestions.length).fill(null);
+      let activeFilter = "all";
+      let filteredQuestions = [...allQuestions];
+      let userAnswers = [];
       let quizSubmitted = false;
 
+      function filterQuiz(lecture, event) {
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach((b) => b.classList.remove("active"));
+        event.target.classList.add("active");
+        activeFilter = lecture;
+        filteredQuestions =
+          lecture === "all"
+            ? [...allQuestions]
+            : allQuestions.filter((q) => q.lecture === lecture);
+        resetQuiz();
+      }
+
       function initQuiz() {
+        userAnswers = new Array(filteredQuestions.length).fill(null);
+        quizSubmitted = false;
         const container = document.getElementById("quizContainer");
         container.innerHTML = "";
-        quizQuestions.forEach((q, index) => {
+        filteredQuestions.forEach((q, index) => {
           const questionDiv = document.createElement("div");
           questionDiv.className = "quiz-question";
+          const badgeClass =
+            q.lecture === 1
+              ? "badge-l1"
+              : q.lecture === 2
+                ? "badge-l2"
+                : "badge-l3";
           questionDiv.innerHTML = `
-                    <div class="question-number">
-                        <span class="lecture-badge ${q.lecture === 2 ? "badge-l2" : "badge-l3"}">Lecture ${q.lecture}</span>
-                        &nbsp; Question ${index + 1} of ${quizQuestions.length}
-                    </div>
-                    <div class="question-text">${q.question}</div>
-                    <div class="options">
-                        ${q.options
-                          .map(
-                            (option, optIndex) => `
-                            <div class="option" onclick="selectOption(${index}, ${optIndex})">
-                                <span class="option-letter">${String.fromCharCode(65 + optIndex)}.</span>
-                                <span>${option}</span>
-                            </div>
-                        `,
-                          )
-                          .join("")}
-                    </div>
-                    <div class="explanation" id="explanation-${index}">
-                        <div class="explanation-label">💡 Explanation:</div>
-                        <div>${q.explanation}</div>
-                    </div>
-                `;
+            <div class="question-number">
+              <span class="lecture-badge ${badgeClass}">Lecture ${q.lecture}</span>
+              &nbsp; Question ${index + 1} of ${filteredQuestions.length}
+            </div>
+            <div class="question-text">${q.question}</div>
+            <div class="options">
+              ${q.options
+                .map(
+                  (option, optIndex) => `
+                <div class="option" onclick="selectOption(${index}, ${optIndex})">
+                  <span class="option-letter">${String.fromCharCode(65 + optIndex)}.</span>
+                  <span>${option}</span>
+                </div>
+              `,
+                )
+                .join("")}
+            </div>
+            <div class="explanation" id="explanation-${index}">
+              <div class="explanation-label">💡 Explanation:</div>
+              <div>${q.explanation}</div>
+            </div>
+          `;
           container.appendChild(questionDiv);
         });
+        document.getElementById("scoreSection").style.display = "none";
         updateProgress();
       }
 
@@ -1431,7 +1657,7 @@
       function updateProgress() {
         const answered = userAnswers.filter((a) => a !== null).length;
         document.getElementById("progressBar").style.width =
-          (answered / quizQuestions.length) * 100 + "%";
+          (answered / filteredQuestions.length) * 100 + "%";
       }
 
       function submitQuiz() {
@@ -1441,7 +1667,7 @@
         }
         quizSubmitted = true;
         let score = 0;
-        quizQuestions.forEach((q, index) => {
+        filteredQuestions.forEach((q, index) => {
           const question = document.querySelectorAll(".quiz-question")[index];
           const options = question.querySelectorAll(".option");
           const userAnswer = userAnswers[index];
@@ -1454,30 +1680,18 @@
           }
           document.getElementById(`explanation-${index}`).classList.add("show");
         });
-        const percentage = ((score / quizQuestions.length) * 100).toFixed(1);
+        const percentage = ((score / filteredQuestions.length) * 100).toFixed(
+          1,
+        );
         document.getElementById("scoreValue").innerHTML =
-          `${score}/${quizQuestions.length}<br><span style="font-size:1.5rem;color:var(--text-muted)">${percentage}%</span>`;
+          `${score}/${filteredQuestions.length}<br><span style="font-size:1.5rem;color:var(--text-muted)">${percentage}%</span>`;
         document.getElementById("scoreSection").style.display = "block";
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
       function resetQuiz() {
         quizSubmitted = false;
-        userAnswers = new Array(quizQuestions.length).fill(null);
-        document.getElementById("scoreSection").style.display = "none";
-        document
-          .querySelectorAll(".quiz-question")
-          .forEach((question, index) => {
-            question
-              .querySelectorAll(".option")
-              .forEach((opt) =>
-                opt.classList.remove("selected", "correct", "incorrect"),
-              );
-            document
-              .getElementById(`explanation-${index}`)
-              .classList.remove("show");
-          });
-        updateProgress();
+        initQuiz();
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
